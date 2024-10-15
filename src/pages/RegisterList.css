@@ -1,0 +1,31 @@
+/* src/pages/RegisterList.css */
+
+.register-list-container {
+    padding: 20px; /* Padding around the container */
+  }
+  
+  .table-container {
+    margin-bottom: 20px; /* Margin below the table */
+  }
+  
+  /* Center the button container */
+  .button-container {
+    display: flex; /* Use flexbox for centering */
+    justify-content: left; /* Center horizontally */
+    margin-top: 20px; /* Add margin above for spacing */
+
+  }
+  
+  /* Add spacing specifically for the button */
+  .go-back-button {
+    /* Optional styles for the button */
+    padding: 10px 20px; /* Add some padding for aesthetics */
+  }
+  
+  /* Optional: Style for the no students message */
+  .no-students-message {
+    text-align: center; /* Center text for the no students message */
+    font-style: italic; /* Italicize the message */
+    color: #888; /* Lighter color for the message */
+  }
+  

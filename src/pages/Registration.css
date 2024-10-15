@@ -1,0 +1,33 @@
+/* src/pages/Registration.css */
+
+.registration-container {
+    display: flex; /* Use Flexbox */
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    min-height: 100vh; /* Full viewport height */
+    padding: 20px; /* Padding around the container */
+    width: 100%; /* Set width to 60% of the page */
+    margin: 0 auto; /* Center the form container */
+  }
+  
+  .form-field {
+    margin-bottom: 16px; /* Space between fields */
+    width: 100%; /* Full width for form fields */
+    max-width: 400px; /* Limit the maximum width of form fields */
+  }
+  
+  /* Button container to manage spacing */
+  .button-container {
+    display: flex; /* Use Flexbox for button alignment */
+    align-items: center; /* Center buttons vertically */
+    margin-top: 16px; /* Space above the buttons */
+    width: 100%; /* Full width for button container */
+    max-width: 400px; /* Limit the maximum width of button container */
+    gap: 16px; /* 1rem spacing between buttons */
+  }
+  
+  .go-back-button {
+    margin-left: 16px; /* Space between the buttons */
+  }
+  

@@ -1,0 +1,20 @@
+/* src/pages/LandingPage.css */
+.landing-page {
+    background-color: #f0f0f0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 16px; /* 1rem spacing between buttons */
+    margin-top: 32px; /* 2rem top margin */
+  }

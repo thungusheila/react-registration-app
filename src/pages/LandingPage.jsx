@@ -2,20 +2,12 @@
 import React from 'react';
 import { Box, Typography, Button, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
+import './LandingPage.css'; // Import the CSS file
 
 const LandingPage = () => {
   return (
-    <Box
-      sx={{
-        backgroundColor: '#2c3e50', // Dark background for the landing page
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        color: '#ecf0f1', // Light text color
-      }}
-    >
-      <Container maxWidth="md">
+    <Box className="landing-page">
+      <Container maxWidth="md" className="container">
         {/* Header */}
         <Typography variant="h2" gutterBottom align="center">
           Welcome to the Student Registration App
@@ -27,21 +19,13 @@ const LandingPage = () => {
         </Typography>
 
         {/* Button Group */}
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: 3, // Spacing between buttons
-            marginTop: 4,
-          }}
-        >
+        <Box className="button-group">
           {/* Link to the Registration Page */}
           <Button
             component={Link}
             to="/register"
             variant="contained"
-            color="primary"
-            sx={{ fontSize: '16px' }}
+           
           >
             Register Student
           </Button>
@@ -50,9 +34,7 @@ const LandingPage = () => {
           <Button
             component={Link}
             to="/register-list"
-            variant="outlined"
-            color="secondary"
-            sx={{ fontSize: '16px', color: '#ecf0f1' }}
+           color="primary" variant="contained"
           >
             View Registered Students
           </Button>

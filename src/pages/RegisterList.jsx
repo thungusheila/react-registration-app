@@ -1,47 +1,61 @@
 // src/pages/RegisterList.jsx
-import React, { useEffect, useState } from 'react';
-import { Box, Typography, List, ListItem, ListItemText, Button } from '@mui/material';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import './RegisterList.css'; // Import the CSS file
 
 const RegisterList = () => {
-  const [students, setStudents] = useState([]);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // Fetch the registered students from localStorage
-    const studentsData = JSON.parse(localStorage.getItem('students')) || [];
-    setStudents(studentsData);
-  }, []);
+  const students = useSelector((state) => state.students); // Get students from Redux store
 
   return (
-    <Box sx={{ padding: 3, width: '100%', textAlign: 'center' }}>
+    <Box className="register-list-container">
       <Typography variant="h4" gutterBottom>
         Registered Students List
       </Typography>
 
-      <List>
-        {students.length > 0 ? (
-          students.map((student, index) => (
-            <ListItem key={index}>
-              <ListItemText
-                primary={`${student.fullName} - ${student.studentID}`}
-                secondary={`Course: ${student.courseOfStudy}, Level: ${student.level}`}
-              />
-            </ListItem>
-          ))
-        ) : (
-          <Typography>No students registered yet</Typography>
-        )}
-      </List>
+      <TableContainer component={Paper} className="table-container">
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Full Name</TableCell>
+              <TableCell>Student ID</TableCell>
+              <TableCell>Course of Study</TableCell>
+              <TableCell>Level</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {students.length > 0 ? (
+              students.map((student, index) => (
+                <TableRow key={index}>
+                  <TableCell>{student.fullName}</TableCell>
+                  <TableCell>{student.studentID}</TableCell>
+                  <TableCell>{student.courseOfStudy}</TableCell>
+                  <TableCell>{student.level}</TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={4} className="no-students-message">
+                  No students registered yet
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
 
-      {/* "Go Back to Landing Page" Button */}
-      <Button
-        variant="contained"
-        onClick={() => navigate('/')}
-        sx={{ mt: 3, backgroundColor: '#3498db', color: '#fff' }}
-      >
-        Go Back to Landing Page
-      </Button>
+      {/* Centered "Go Back to Landing Page" Button */}
+      <Box className="button-container">
+        <Button
+          variant="contained"
+          onClick={() => navigate('/')}
+          className="go-back-button" // Apply custom class for styling
+        >
+          Go Back to Landing Page
+        </Button>
+      </Box>
     </Box>
   );
 };

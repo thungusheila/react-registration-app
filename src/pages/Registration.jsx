@@ -4,9 +4,13 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { TextField, Button, Typography, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addStudent } from '../redux/studentSlice';
+import './Registration.css'; // Import the CSS file
 
 const Registration = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -23,23 +27,21 @@ const Registration = () => {
         .matches(/^[1-9][0-9]*$/, 'Level must be a number')
         .required('Level is required'),
     }),
-    onSubmit: (values) => {
-      // Store the new student data in localStorage
-      const students = JSON.parse(localStorage.getItem('students')) || [];
-      students.push(values);
-      localStorage.setItem('students', JSON.stringify(students));
+    onSubmit: (values, { resetForm }) => {
+      dispatch(addStudent(values));
       alert('Student Registered Successfully!');
+      resetForm(); // Reset the form after submission
     },
   });
 
   return (
-    <Box sx={{ padding: 3, width: '100%', textAlign: 'center' }}>
+    <Box className="registration-container">
       <Typography variant="h4" gutterBottom>
         Student Registration Form
       </Typography>
       <form onSubmit={formik.handleSubmit}>
         {/* Full Name Field */}
-        <Box sx={{ marginBottom: 2 }}>
+        <Box className="form-field">
           <TextField
             fullWidth
             id="fullName"
@@ -54,7 +56,7 @@ const Registration = () => {
         </Box>
 
         {/* Student ID Field */}
-        <Box sx={{ marginBottom: 2 }}>
+        <Box className="form-field">
           <TextField
             fullWidth
             id="studentID"
@@ -69,7 +71,7 @@ const Registration = () => {
         </Box>
 
         {/* Course of Study Field */}
-        <Box sx={{ marginBottom: 2 }}>
+        <Box className="form-field">
           <TextField
             fullWidth
             id="courseOfStudy"
@@ -84,7 +86,7 @@ const Registration = () => {
         </Box>
 
         {/* Level Field */}
-        <Box sx={{ marginBottom: 2 }}>
+        <Box className="form-field">
           <TextField
             fullWidth
             id="level"
@@ -98,20 +100,25 @@ const Registration = () => {
           />
         </Box>
 
-        {/* Submit Button */}
-        <Button color="primary" variant="contained" type="submit">
-          Register
-        </Button>
-      </form>
+        {/* Button Container */}
+        <Box className="button-container">
+          {/* Submit Button */}
+          <Button color="primary" variant="contained" type="submit">
+            Register
+          </Button>
 
-      {/* "Go Back to Landing Page" Button */}
-      <Button
-        variant="outlined"
-        onClick={() => navigate('/')}
-        sx={{ marginTop: 3, backgroundColor: '#3498db', color: '#fff' }}
-      >
-        Go Back to Landing Page
-      </Button>
+         
+
+          {/* "Go Back to Landing Page" Button */}
+          <Button
+           color="primary" variant="contained"
+            onClick={() => navigate('/')}
+            className="go-back-button"
+          >
+            Go Back to Landing Page
+          </Button>
+        </Box>
+      </form>
     </Box>
   );
 };
